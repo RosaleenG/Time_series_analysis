@@ -1,0 +1,47 @@
+This project covers time series analysis functions performed on data from smart-meters in London from end of 2011 to 2014. It contains the daily consumption (kWh) averaged over several households in London.
+
+The last timestamp for which consumpton is available is January 31st 2014.
+
+The aim is to build a forecasting model that can predict the consumption for February 2014 (exluding 28th, so from the 1st to the 27th).
+
+Get the data
+In a notebook, run:
+
+import pandas as pd
+
+df = pd.read_csv("data/london_smartmeter_basic.csv")
+to load the dataset.
+
+Get Started
+You will need to implement three functions:
+
+preprocess
+This takes a dataframe and should return two dataframes: ts (your training data) as well as ts_eval.
+
+ts_eval is the evaluation time series, it contains the list of days you will need to predict consumption for so KATE can evaluate the performance of your model.
+
+In the dataframe provided, there is a column evaluation_set that tells you whether this row is for evaluation or not.
+
+To get all the rows that need to be used for evaluation only, you can use:
+
+df.loc[df.evaluation_set]
+train
+This takes the ts you have processed previously and trains your model. It should return your trained model.
+
+predict
+This takes the model you have trained as well as a test time serie 
+
+This should return y_pred, predictions on the test set.
+
+The recommended way of working on this project is to:
+
+
+You can test that your functions work in a notebook with the following example:
+
+import pandas as pd
+
+df = pd.read_csv("data.zip")
+ts, ts_eval = preprocess(df)
+model = train(ts)
+y_pred = predict(model, ts_eval)
+print(y_pred)
